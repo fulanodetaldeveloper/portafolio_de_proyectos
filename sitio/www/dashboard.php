@@ -10,6 +10,7 @@ if ($_SESSION['usuario_id']===0) {
     header("Location: index.php");
     exit();
 }
+$tipo = $_SESSION['usuario_tipo'];
 $facade = new ProyectoFacade();
 $proyectos = $facade->listAllGrid();
 
@@ -41,7 +42,7 @@ $proyectos = $facade->listAllGrid();
         }
     </style>
     <script src="/static/js/lib/jquery-3.7.1.min.js"></script>
-    <script src="/static/js/login.js"></script>
+    <script src="/static/js/dashboard.js"></script>
 </head>
 <body>
     <div class="container-fluid">
@@ -50,6 +51,7 @@ $proyectos = $facade->listAllGrid();
             <div class="col-12">
                 <div class="btn-toolbar" role="toolbar">
                     <div class="btn-group mr-2" role="group">
+                    <?php if($tipo===1){ ?>
                         <button type="button" class="btn btn-success">
                             <i class="fas "></i> Agregar
                         </button>
@@ -59,7 +61,8 @@ $proyectos = $facade->listAllGrid();
                         <button type="button" class="btn btn-danger">
                             <i class="fas "></i> Eliminar
                         </button>
-                        <button type="button" class="btn btn-secondary">
+                    <?php }?>
+                        <button type="button" id="btnSalir" name="btnSalir" class="btn btn-secondary">
                             <i class="fas "></i> Salir
                         </button>
                     </div>

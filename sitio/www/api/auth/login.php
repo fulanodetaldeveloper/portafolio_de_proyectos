@@ -36,6 +36,7 @@ switch ($method) {
             session_start();
             $_SESSION = [];
             $_SESSION['usuario_id'] = 0;
+            $_SESSION['usuario_tipo'] = 0;
             http_response_code(404);
             $response = [
                 'status' => 'error',
@@ -51,6 +52,7 @@ switch ($method) {
             session_start();
             $_SESSION = [];
             $_SESSION['usuario_id'] = $user->getId();
+            $_SESSION['usuario_tipo'] = $user->getIdTipo();
             $response = [
                 'status' => 'success',
                 'code' => 200,
