@@ -16,6 +16,28 @@ class ProyectoFacade {
         $this->userDAO = new UsuarioDAO();
     }
 
+    public function listAllGrid() {
+        $proyectos = $this->proyectoDAO->list();
+        
+        foreach ($proyectos as $p) {
+            $desarrolladores = array();
+            $id = $p->getProjectManager()->getId();
+            $manager = $this->managerDAO->findById($id);
+            $p->setProjectManager($manager);
+            $team = $this->teamDAO->listByIdProject($p->getId());
+            $devs_names = array();
+            foreach ($team as $t){
+                $dev = $this->devDAO->findById($t->getDesarrollador()->getId());
+                $devs_names[] = $dev->getNombre()." ".$dev->getApaterno()." ".$dev->getAmaterno();
+                $desarrolladores[] = $dev;
+            }
+            $p->devs_names = implode(', ', $devs_names);
+            $p->setDesarrolladores($desarrolladores);
+        }
+        
+        return $proyectos;
+    }
+
     public function listAll() {
         $proyectos = $this->proyectoDAO->list();
         

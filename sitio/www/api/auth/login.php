@@ -30,9 +30,12 @@ switch ($method) {
         $username = $datos['username'] ?? '';
         $password = $datos['password'] ?? '';
 
-        $response = $facade->validUser($username, $password);
+        $user = $facade->validUser($username, $password);
         
-        if ($response->getId() == 0) {
+        if ($user->getId() == 0) {
+            session_start();
+            $_SESSION = [];
+            $_SESSION['usuario_id'] = 0;
             http_response_code(404);
             $response = [
                 'status' => 'error',
@@ -45,6 +48,9 @@ switch ($method) {
                 ]
             ];
         } else{
+            session_start();
+            $_SESSION = [];
+            $_SESSION['usuario_id'] = $user->getId();
             $response = [
                 'status' => 'success',
                 'code' => 200,

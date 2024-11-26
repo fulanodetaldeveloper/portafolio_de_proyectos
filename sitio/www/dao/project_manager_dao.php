@@ -19,19 +19,17 @@ class ProjectManagerDAO {
             $params = [':id' => $id];
             $stmt->execute($params);
 
-            $managers = array();
+            $manager = new ProjectManager();
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $manager = new ProjectManager();
                 $manager->setId($row['id']);
                 $manager->setNombre($row['nombre']);
                 $manager->setApaterno($row['apaterno']);
                 $manager->setAmaterno($row['amaterno']);
                 $manager->setFnacimiento($row['fnacimiento']);
                 $manager->setActivo($row['activo']);
-                $managers[] = $manager;
             }
             
-            return $managers;
+            return $manager;
         } catch (Exception $e) {
             error_log("Error en ProjectManagerDAO::findById: " . $e->getMessage());
             return array();
