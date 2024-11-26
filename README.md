@@ -3,7 +3,7 @@ Este repositorio contiene el Proyecto en PHP8, Ubuntu 22, MySQL 8, Apache2, Dock
 
 ## Tabla de contenidos
 - [Documentación](#documentación)
-- [Instalación en Linux](#instalación)
+- [Instalación en Linux](#instalación-en-linux)
 
 ## Documentación
 
