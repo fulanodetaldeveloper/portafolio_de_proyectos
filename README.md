@@ -1,4 +1,4 @@
-# portafolio_de_proyectos
+# Portafolio de proyectos
 Este repositorio contiene el Proyecto en PHP8, Ubuntu 22, MySQL 8, Apache2, Docker,  que permite gestionar proyectos.
 
 ## Tabla de contenidos
